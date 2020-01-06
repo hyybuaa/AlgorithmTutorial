@@ -20,6 +20,8 @@ class Solution:
                     lst.append(curTree.left)
                 if curTree.right != None:
                     lst.append(curTree.right)
+        else:
+            lst2 = []
         return lst2
 
 if __name__ == "__main__":

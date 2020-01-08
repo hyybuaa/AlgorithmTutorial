@@ -9,6 +9,34 @@ def quick_sort(array):
     quick_sort(right)
     return left + [pivot] + right
 
+# 归并排序
+def merge_sort(array):
+    if len(array) <= 1:
+        return array
+    mid = len(array)//2
+    left = array[:mid]
+    right = array[mid:]
+    # 继续分治
+    left = merge_sort(left)
+    right = merge_sort(right)
+    return merge(left, right)
+
+def merge(left, right):
+    l=r=0
+    result = []
+    while(l<len(left) and r<len(right)):
+        # 添加较小值
+        if left[l] < right[r]:
+            result.append(left[l])
+            l += 1
+        else:
+            result.append(right[r])
+            r += 1
+    # 直接合并未必较的数组
+    result += left[l:]
+    result += right[r:]
+    return result
+
 #堆排序，递归法，大顶堆
 def head_sort(array, n):
     result = []
@@ -34,5 +62,7 @@ def buildMaxHeap(heap, n):
 
 if __name__ == "__main__":
     heap = [7, 3, 8, 5, 4, 1]
-    result = head_sort(heap, 6)
-    print(result)
+    # result = head_sort(heap, 6)
+    result_merge = merge_sort(heap)
+    # print(result)
+    print(result_merge)

@@ -13,6 +13,8 @@ def quick_sort(array):
 #堆排序，递归法，大顶堆
 def head_sort(array, n):
     result = []
+    if n>len(array):
+        return []
     for _ in range(n):
         array = buildMaxHeap(array, len(array))
         result.append(array.pop(0))

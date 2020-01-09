@@ -5,33 +5,29 @@ class ListNode:
         self.next = None
 
 class Solution:
-    def findKthToTail(self, head, k):
-        if k<0:
-            return None
-        if head == None:
+    def FindKthToTail(self, head, k):
+        # write code here
+        if head == None or k == None:
             return head
-        length = 0
+        if k==0:
+            return None
         listNode = head
-        tmp = None
-        while(listNode.next!= None):
+        length = 0
+        while(head.next!=None):
+            head = head.next
+            if length>=k-1:
+                listNode = listNode.next
             length += 1
-            if length>=k:
-                tmp = head
-                head = head.next
-            listNode = listNode.next
-
-        if listNode.next == None:
-            if length < k:
-                return None
-            else:
-                return tmp.next
-
+        if length>=k-1:
+            return listNode
+        else:
+            return None
 
 if __name__ == "__main__":
     listNode = ListNode(1)
     listNode.next = ListNode(2)
     listNode.next.next = ListNode(3)
+    k = 4
     solution = Solution()
-    K= 4
-    result = solution.findKthToTail(listNode, K)
+    result = solution.FindKthToTail(listNode, k)
     print(result)
